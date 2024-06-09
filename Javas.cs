@@ -130,6 +130,16 @@ namespace sbava
             savedSettings.Save();
         }
 
+        public void showList()
+        {
+            Table tab = new Table();
+            foreach (JavaDist d in distributions)
+            {
+                tab.add(d.getVersion(), d.getPath());
+            }
+            tab.render();
+        }
+
         private static List<JavaDist> ScanFolder(String folder)
         {
             List<JavaDist> result = new List<JavaDist>();

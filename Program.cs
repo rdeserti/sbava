@@ -90,10 +90,18 @@ namespace sbava
                             break;
                         case "which":
                         case "w":
-
+                            if (version==null)
+                            {
+                                O.Log("ERROR: no version candidate for usage");
+                                Environment.Exit(1);
+                            } else
+                            {
+                                O.Log("Will Launch version " + version.getVersion() + " at path:\n" + version.getPath());
+                            }
                             break;
                         case "list":
                         case "l":
+                            distributions.showList();
                             break;
                         case "choose":
                         case "ch":
@@ -105,9 +113,6 @@ namespace sbava
                     }
                 cmdNumber++;
             }
-
-            O.Log("Will launch\n"+version.getPath()+"\\java" + (compiler ? "c" : "") + " " + arg);
-
         }
 
         private static JavaDist setVersion(string v)

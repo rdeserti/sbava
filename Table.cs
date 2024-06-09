@@ -28,12 +28,26 @@ namespace sbava
 
         public void render()
         {
-            int conW = Console.WindowWidth;
+            int conW = Console.WindowWidth-1;
             if (keyW > (conW / 2)) keyW = (conW / 2);
 
-            int valW = conW - keyW - 1;
+            int valW = conW - keyW - 2;
 
-            
+            for (int c=0; c<keys.Count;c++)
+            {
+                string k = adapt(keys[c],keyW);
+                string v = adapt(values[c],valW);
+                string[] ks = k.Split('\n');
+                string[] vs = v.Split('\n');
+                if (ks.Length > vs.Length) { for (int i = 0; i < (ks.Length - vs.Length); i++) v += "\n"; vs = v.Split('\n'); }
+                if (ks.Length < vs.Length) { for (int i = 0; i < (vs.Length - ks.Length); i++) k += "\n"; ks = k.Split('\n'); }
+                
+                for (int i=0;i<ks.Length;i++)
+                {
+                    Console.Write(ks[i].PadRight(keyW).Substring(0, keyW)+" ");
+                    Console.WriteLine(vs[i]);
+                }
+            }
 
 
         }
@@ -46,7 +60,7 @@ namespace sbava
             for(int c=0; c<tokenized.Length;c++)
             {
                 p = p + tokenized[c].Length;
-                if (p<(tokenized[c].Length-1))
+                if (p<(s.Length))
                 {
                     tokenized[c] += s[p];
                     p++;
@@ -80,7 +94,7 @@ namespace sbava
                     lastline = temp;
                 }
             }
-            if (!lastline.Equals("")) result += "\n" + lastline;
+            if (!lastline.Equals("") && !result.Equals("")) result += "\n" + lastline; else result = lastline;
             return result;
         }
     }

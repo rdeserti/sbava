@@ -61,7 +61,7 @@ namespace sbava
             {
                 return int.Parse(version.Substring(2, 1));
             }
-            String v = version.Substring(0, version.IndexOf(".") - 1);
+            String v = version.Substring(0, version.IndexOf(".") );
             return int.Parse(v);
         }
 
