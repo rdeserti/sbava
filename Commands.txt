@@ -1,0 +1,19 @@
+﻿sbava -c ... class 
+sbava use java11 -c -.... class
+sbava scan 
+sbava scan wide 
+sbava choose default 
+sbava compile
+
+
+use <version>
+    <version> java11 
+
+choose <default>
+
+ant
+
+gradle
+
+maven
+
